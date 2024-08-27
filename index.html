@@ -70,7 +70,7 @@
             const applySwayAnim = (element) => {
                 const randomSway = randomSwayAnims[Math.floor(Math.random() * randomSwayAnims.length)];
                 element.css('transform', randomSway);
-                setTimeout(() => {applySwayAnim(element);}, 1000);};
+                setTimeout(() => {applySwayAnim(element);}, 10000);};
             // 벚꽃 잎 생성 함수
             const petalGen = () => {
                 setTimeout(requestAnimationFrame, defaults.newOn, petalGen);
@@ -97,7 +97,9 @@
 <body>
     <header class="header">
         <div class="inner">
-            <img src="img/정.png" alt="">
+            <a href="https://gitdayone.github.io/PortFolio/">
+                <img src="img/정4.png" alt="">
+            </a>
             <nav class="nav">
                 <ul>
                     <li><a href="#">Main</a></li>
@@ -111,7 +113,15 @@
     <section class="main cherry_blossom">
         <div class="inner">
             <div class="title">
-                <h5>JEONG's</h5>
+                <h5>
+                    <span>J</span>
+                    <span>E</span>
+                    <span>O</span>
+                    <span>N</span>
+                    <span>G</span>
+                    <span>'</span>
+                    <span>s</span>
+                </h5>
                 <h2>PORTFOLIO</h2>
                 <div class="text">
                     <div class="left">
