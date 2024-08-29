@@ -31,13 +31,17 @@ h2 {text-shadow: 5px 5px 5px #a4a4a4;}
     height: 100px;
     background-color: #ffffff48;
 }
-.header .inner a {margin-left: 10%;}
+.header .inner > a {margin-left: 10%;}
 .header .inner img {
     width: 50px;
     height: 50px;
     margin-top: 25px;
+    border: 2px solid #333;
 }
-.header .inner .nav {padding-right: 10%;}
+.header .inner .nav {
+    padding-right: 10%;
+    font-size: 18px;
+}
 .nav a:before, .nav a:after {
     display: inline-block;
     opacity: 0;
@@ -149,7 +153,7 @@ h2 {text-shadow: 5px 5px 5px #a4a4a4;}
     height: 683px;
     /* background-color: #f4f4f4; */
     position: relative;
-    margin-top: 270px;
+    margin-top: 130px;
 }
 .profile h1 {
         font-size: 500px;
@@ -174,22 +178,27 @@ h2 {text-shadow: 5px 5px 5px #a4a4a4;}
     /* background-color: #f4f4f4; */
     display: flex;
 }
-.profile .inner figure {
-    margin-right: 300px;
+.profile .inner > figure {
+    width: 350px;
+    height: 340px;
+    border-radius: 25px;
+    margin: 100px 300px 0 0;
+    overflow: hidden;
+    background-color: #A6C3D5;
 }
 .profile .inner figure img {
     width: 350px;
     height: 340px;
     object-fit: cover;
 }
-.profile .inner figure .text {
+.profile .inner .profile-text {
     display: flex;
     font-size:20px;
     line-height: 1.7;
-    margin-top: 60px;
+    margin-top: 20px;
 }
-.profile .inner figure .text .left-text {font-weight: bold;width: 100px;}
-.profile .inner .right h5 {font-size: 30px;margin-bottom: 50px;padding-left: 30px;position: relative;}
+.profile .inner .profile-text .left-text {font-weight: bold;width: 100px;}
+.profile .inner h5 {font-size: 30px;margin-bottom: 20px;padding-left: 30px;position: relative;}
 .profile .inner .right h5:before {
     content: '';
     width: 30px;
@@ -199,7 +208,7 @@ h2 {text-shadow: 5px 5px 5px #a4a4a4;}
     left: -5px;
     background: url(../img/Chat_alt_light.svg) center center / cover no-repeat;
 }
-.profile .inner .right .edu {margin-bottom: 90px;}
+.profile .inner .right .edu {margin: 40px 0;}
 .profile .inner .right .edu .text {display: flex;font-size: 20px;line-height:1.7;}
 .profile .inner .right .edu .text b {margin-right: 28px;width:46.05px;}
 .profile .inner .right .edu .text p {margin-right: 28px;}
@@ -430,6 +439,49 @@ h2 {text-shadow: 5px 5px 5px #a4a4a4;}
 .design .inner .right img.on {
     opacity: 1;
 }
+.businessCard {
+    width: 100%;
+    height: 953px;
+    position: relative;
+}
+.businessCard h1 {
+    font-size: 500px;
+    color: #f3f3f3;
+    position: absolute;
+    right: -300px;
+    bottom: 0;
+    z-index: -1;
+}
+.typing {
+    width: 100%;
+    font-size:80px;
+    padding-top: 170px;
+    text-align: center;
+}
+.typing:after {display:inline-block;margin-left:2px;vertical-align:middle;content:'';background:#000;width:2px;height:82px;animation:blink infinite 1s ease;}
+
+@keyframes blink {
+  0%  {opacity:0;}
+  100%  {opacity:1;}
+}
+/* .businessCard .wrap {display: flex;} */
+.businessCard .wrap img {
+    width: 800px;
+    position: absolute;
+    left: 10%;
+    top: 35%;
+}
+.businessCard .wrap .text {
+    position: absolute;
+    right: 18%;
+    top: 35%;
+    margin-top: 180px;
+}
+.businessCard .wrap .text h6 {font-size: 38px;margin-bottom: 20px;}
+.businessCard .wrap .text p {font-size: 30px;}
+.businessCard .wrap .text span {font-size: 30px;display: block;margin-top: 15px;}
+.businessCard .wrap .text span:first-of-type {margin-top: 30px;}
+.businessCard .wrap {}
 .footer {
     height: 100px;
     background-color: #333;
@@ -439,5 +491,3 @@ h2 {text-shadow: 5px 5px 5px #a4a4a4;}
     justify-content: center;
 }
 .footer p {margin: 0 auto;line-height: 1.5;}
-
-.swiper {}

@@ -23,14 +23,14 @@
                 if (wheelScroll > 0) {
                     header.classList.add('on')
                 }
-                else(header.classList.remove('on'))
+                else (header.classList.remove('on'))
             })
-            
-            menuBtn.click(function(){
+
+            menuBtn.click(function () {
                 let i = $(this).index()
                 let sec = $('section').eq(i);
                 $('html, body').animate({
-                    scrollTop : sec.offset().top
+                    scrollTop: sec.offset().top
                 }, 1000, 'easeOutBack')/* animate end */
             })/* menuBtn.click end */
 
@@ -48,7 +48,8 @@
                 speed: 5,
                 maxSize: 15,
                 minSize: 10,
-                newOn: 400};
+                newOn: 400
+            };
             // 벚꽃 영역 크기를 저장할 변수
             var $wrap = $('.cherry_blossom');
             let wrapH = $wrap.height();
@@ -63,14 +64,16 @@
                 const translateX = Math.random() * 10 - 5;
                 const translateY = Math.random() * 10 - 10;
                 const translateZ = Math.random() * 15;
-                return `rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg) translateX(${translateX}px) translateY(${translateY}px) translateZ(${translateZ}px)`;};
+                return `rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg) translateX(${translateX}px) translateY(${translateY}px) translateZ(${translateZ}px)`;
+            };
             // 무작위 흔들림 애니메이션 배열 생성
             const randomSwayAnims = [...Array(10)].map(getRandomRotate);
             // 특정 요소에 흔들림 애니메이션 적용
             const applySwayAnim = (element) => {
                 const randomSway = randomSwayAnims[Math.floor(Math.random() * randomSwayAnims.length)];
                 element.css('transform', randomSway);
-                setTimeout(() => {applySwayAnim(element);}, 10000);};
+                setTimeout(() => { applySwayAnim(element); }, 10000);
+            };
             // 벚꽃 잎 생성 함수
             const petalGen = () => {
                 setTimeout(requestAnimationFrame, defaults.newOn, petalGen);
@@ -80,16 +83,45 @@
                 const fallTime = (wrapH * 0.1 + Math.random() * 5) / defaults.speed;
                 const horizontalOffset = Math.random() * 2 - 1;
                 // 애니메이션 끝나면 제거
-                petal.on('animationend', () => {petal.remove();}).css({width: size,height: size,left: startPosLeft,position: 'absolute',animation: `fall ${fallTime}s linear`}).appendTo($wrap);
+                petal.on('animationend', () => { petal.remove(); }).css({ width: size, height: size, left: startPosLeft, position: 'absolute', animation: `fall ${fallTime}s linear` }).appendTo($wrap);
                 // 위치 업데이트 함수
-                const updatePos = () => {petal.css('left', `+=${horizontalOffset}`);requestAnimationFrame(updatePos);};updatePos();applySwayAnim(petal);};
+                const updatePos = () => { petal.css('left', `+=${horizontalOffset}`); requestAnimationFrame(updatePos); }; updatePos(); applySwayAnim(petal);
+            };
             // 창 크기가 변경될 때 영역 크기 업데이트
-            $(window).resize(() => {wrapH = $wrap.height();wrapW = $wrap.width();});
+            $(window).resize(() => { wrapH = $wrap.height(); wrapW = $wrap.width(); });
             // 로딩 완료 후 벚꽃 잎 생성 시작
-            $(window).on('load', () => {requestAnimationFrame(petalGen);});
+            $(window).on('load', () => { requestAnimationFrame(petalGen); });
             Fancybox.bind("[data-fancybox]", {
                 // Your options go here 
-                });
+            });
+            const txtWrap = document.querySelector('.typing');
+            const txtString = '함께하는 웹디자인 & 퍼블리셔 \n 허정무 입니다!';
+            const txtSpeed = 150;
+            const txtDelay = 4000;
+            let txtIndex = 0;
+            let typeCotrol = true;
+
+            function typingEvent() {
+                if (typeCotrol === true) {
+                    let txtNow = txtString[txtIndex++];
+                    txtWrap.innerHTML += txtNow === "\n" ? "<br>" : txtNow;
+                    /* console.log(txtIndex) */
+                    if (txtIndex >= txtString.length) {
+                        txtIndex = 0;
+                        typeCotrol = false;
+                    }
+                } else {
+                    clearInterval(setTyping);
+                    setTimeout(function () {
+                        txtWrap.innerHTML = '';
+                        typeCotrol = true;
+                        setTyping = setInterval(typingEvent, txtSpeed);
+                    }, txtDelay)
+                }
+
+            }
+
+            let setTyping = setInterval(typingEvent, txtSpeed);
         })
     </script>
 </head>
@@ -98,7 +130,7 @@
     <header class="header">
         <div class="inner">
             <a href="https://gitdayone.github.io/PortFolio/">
-                <img src="img/정4.png" alt="">
+                <img src="img/정6.png" alt="">
             </a>
             <nav class="nav">
                 <ul>
@@ -106,6 +138,7 @@
                     <li><a href="#">Profile</a></li>
                     <li><a href="#">Project</a></li>
                     <li><a href="#">Design</a></li>
+                    <li><a href="#">Contact</a></li>
                 </ul>
             </nav><!-- .nav end -->
         </div><!-- .inner end -->
@@ -147,7 +180,10 @@
         <div class="inner">
             <figure>
                 <img src="img/persona.png" alt="">
-                <div class="text">
+            </figure>
+            <div class="right">
+                <h5>PROFILE</h5>
+                <div class="profile-text">
                     <div class="left-text">
                         <p>Name</p>
                         <p>Birth</p>
@@ -160,9 +196,7 @@
                         <p>010.4618.5342</p>
                         <p>qkqrkqkdqk@naver.com</p>
                     </div><!-- .right-text end -->
-                </div><!-- .text end -->
-            </figure>
-            <div class="right">
+                </div><!-- .profile-text end -->
                 <div class="edu">
                     <h5>EDUCATION</h5>
                     <div class="text">
@@ -189,8 +223,6 @@
                         <img src="img/icon_js.png" alt="">
                         <img src="img/icon_jquery.png" alt="">
                         <img src="img/react.png" alt="">
-                    </figure>
-                    <figure>
                         <img src="img/icon_ps.png" alt="">
                         <img src="img/icon_ai.png" alt="">
                         <img src="img/icon_figma.png" alt="">
@@ -225,7 +257,8 @@
                                             <p>개인작업(100%)</p>
                                         </div><!-- .text end -->
                                     </div><!-- .textwrap end -->
-                                    <a href="https://gitdayone.github.io/Logitech/" class="web" target="_blank">Website</a>
+                                    <a href="https://gitdayone.github.io/Logitech/" class="web"
+                                        target="_blank">Website</a>
                                 </div><!-- .left end -->
                                 <figure><img src="img/mockup.png" alt="project image"></figure>
                             </div><!-- .item end -->
@@ -249,7 +282,8 @@
                                             <p>개인작업(100%)</p>
                                         </div><!-- .text end -->
                                     </div><!-- .textwrap end -->
-                                    <a href="https://gitdayone.github.io/GSEnergy-redesign/" class="web" target="_blank">Website</a>
+                                    <a href="https://gitdayone.github.io/GSEnergy-redesign/" class="web"
+                                        target="_blank">Website</a>
                                 </div><!-- .left end -->
                                 <figure><img src="img/mockup2.png" alt="project image"></figure>
                             </div><!-- .item end -->
@@ -297,7 +331,8 @@
                                             <p>개인작업(100%)</p>
                                         </div><!-- .text end -->
                                     </div><!-- .textwrap end -->
-                                    <a href="https://gitdayone.github.io/PizzaHut/" class="web" target="_blank">Website</a>
+                                    <a href="https://gitdayone.github.io/PizzaHut/" class="web"
+                                        target="_blank">Website</a>
                                 </div><!-- .left end -->
                                 <figure><img src="img/mockup4.png" alt="project image"></figure>
                             </div><!-- .item end -->
@@ -321,7 +356,8 @@
                                             <p>개인작업(100%)</p>
                                         </div><!-- .text end -->
                                     </div><!-- .textwrap end -->
-                                    <a href="https://www.figma.com/design/LgwdBbuzl0Y7ZcE3hO8Vwi/%EC%A7%80%EB%8B%88%EB%AE%A4%EC%A7%81-%EB%A6%AC%EB%94%94%EC%9E%90%EC%9D%B8?node-id=0-1&t=OTcZi6H9rirdETGj-0" class="web" target="_blank">Design</a>
+                                    <a href="https://www.figma.com/design/LgwdBbuzl0Y7ZcE3hO8Vwi/%EC%A7%80%EB%8B%88%EB%AE%A4%EC%A7%81-%EB%A6%AC%EB%94%94%EC%9E%90%EC%9D%B8?node-id=0-1&t=OTcZi6H9rirdETGj-0"
+                                        class="web" target="_blank">Design</a>
                                 </div><!-- .left end -->
                                 <figure><img src="img/mockup5.png" alt="project image"></figure>
                             </div><!-- .item end -->
@@ -337,7 +373,7 @@
     <section class="design">
         <h2>DESIGN</h2>
         <p>Adobe Photoshop & Illustrator로 디자인한 작업물입니다.</p>
-            <p>(클릭시 팝업창에서 이미지가 확대됩니다.)</p>
+        <p>(클릭시 팝업창에서 이미지가 확대됩니다.)</p>
         <div class="inner">
             <figure class="mainImg">
                 <img src="designfile/02_도형툴지우기_래스터화_완성.png" alt="">
@@ -351,8 +387,8 @@
                     </figure>
                     <figure>
                         <a href="designfile/01.png" data-fancybox="gallery">
-                        <img src="designfile/01.png" alt="페이지 이미지">
-                    </a>
+                            <img src="designfile/01.png" alt="페이지 이미지">
+                        </a>
                     </figure>
                     <figure>
                         <a href="designfile/5월8일제출1.png" data-fancybox="gallery">
@@ -397,6 +433,21 @@
             </div><!-- .rightwrap -->
         </div><!-- .inner end -->
     </section><!-- .design end -->
+    <section class="businessCard">
+        <h1>Contact</h1>
+        <div class="typing"></div>
+        <div class="wrap">
+            <figure>
+                <img src="img/Cardimg.png" alt="img">
+            </figure>
+            <div class="text">
+                <h6>항상 행복한 하루 되세요 :D</h6>
+                <p>아래로 연락을 주시면 빠르게 답장 드리겠습니다!</p>
+                <span>E-Mail : qkqrkqkdqk@naver.com</span>
+                <span>Phone : 010 - 4618 - 5342</span>
+            </div><!-- .text end -->
+        </div><!-- .wrap end -->
+    </section><!-- .businessCard end -->
     <footer class="footer">
         <p>본 페이지는 상업적 목적이 아닌 개인 포트폴리오용으로 제작되었습니다.</p>
         <p>Copyright 2024. HEO JEONGMU. All right reserved.</p>
@@ -404,21 +455,21 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         var swiper = new Swiper(".mySwiper", {
-      spaceBetween: 30,
-      centeredSlides: true,
-      autoplay: {
-        delay: 3000,
-        disableOnInteraction: true,
-      },
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-    });
+            spaceBetween: 30,
+            centeredSlides: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: true,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
     </script>
 </body>
 
